@@ -1,0 +1,13 @@
+comment:
+  layout: "header, files, footer"
+  hide_project_coverage: false
+
+flags:
+  django:
+    paths:
+      - apps/django
+    carryforward: true
+  dashboard:
+    paths:
+      - apps/dashboard
+    carryforward: true
