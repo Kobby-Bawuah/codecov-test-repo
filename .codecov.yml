@@ -3,7 +3,7 @@ comment:
   hide_project_coverage: false
 
 ignore:
-  - '(?s:.*/migrations/.*/[^\/]*)\Z'
+  - ".*migrations.*"
 
 flags:
   django:
