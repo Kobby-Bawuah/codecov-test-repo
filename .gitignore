@@ -3,6 +3,11 @@ __pycache__/
 .pytest_cache/
 *.pyc
 
+# Coverage reports
+*.xml
+htmlcov/
+.coverage
+
 .DS_Store
 .env
 .env.local
