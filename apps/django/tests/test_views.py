@@ -1,4 +1,4 @@
-from src.calculator import add, subtract
+from apps.django.src.calculator import add, subtract  # ✅ Correct path
 
 def test_add():
     assert add(2, 3) == 5
