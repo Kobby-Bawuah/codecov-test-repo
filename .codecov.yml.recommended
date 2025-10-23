@@ -1,0 +1,33 @@
+# Recommended Codecov Configuration
+# This configuration uses the tested and verified ignore pattern for migrations
+
+comment:
+  layout: "header, files, footer"
+  hide_project_coverage: false
+
+# Ignore patterns - use simple regex that Codecov supports
+ignore:
+  - ".*/migrations/.*"  # Exclude all migration files from coverage reports
+
+flags:
+  django:
+    paths:
+      - apps/django
+    carryforward: true
+  dashboard:
+    paths:
+      - apps/dashboard
+    carryforward: true
+
+# Optional: Additional patterns you might want to consider
+# Uncomment any of these if needed:
+#
+# ignore:
+#   - ".*/migrations/.*"      # Migration files (already included above)
+#   - ".*/tests/.*"           # Test files (if you want to exclude them)
+#   - ".*/__pycache__/.*"     # Python cache files
+#   - ".*/\\..*"              # Hidden files
+#   - "manage.py"             # Django management script
+#   - "wsgi.py"               # WSGI configuration
+#   - ".*settings.*\\.py"     # Settings files
+
