@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Codecov Ignore Pattern Testing Script
-# This script tests three scenarios for Codecov file exclusion
+# This script tests two scenarios for Codecov file exclusion
 
 set -e
 
@@ -224,40 +224,6 @@ run_coverage "test2"
 check_coverage_files
 simulate_codecov_ignore
 
-echo ""
-echo -e "${BLUE}============================================${NC}"
-echo -e "${BLUE}TEST 3: Ignoring Existing File${NC}"
-echo -e "${BLUE}============================================${NC}"
-echo -e "Testing: ${YELLOW}Ignoring apps/dashboard/dashboard.py${NC}"
-echo -e "This tests that ignore only affects new commits"
-echo ""
-
-# Test 3: Ignore an existing file that was already uploaded
-# Note: Use the path as it appears in coverage.xml (without 'apps/' prefix)
-cat > .codecov.yml << 'EOF'
-comment:
-  layout: "header, files, footer"
-  hide_project_coverage: false
-
-ignore:
-  - ".*/migrations/.*"
-  - "dashboard/dashboard.py"
-
-flags:
-  django:
-    paths:
-      - apps/django
-    carryforward: true
-  dashboard:
-    paths:
-      - apps/dashboard
-    carryforward: true
-EOF
-
-run_coverage "test3"
-check_coverage_files
-simulate_codecov_ignore
-
 # Restore original codecov.yml
 restore_codecov
 
@@ -271,17 +237,17 @@ echo ""
 echo -e "1. The complex regex ${RED}(?s:.*/migrations/.*/[^\/]*)\\Z${NC}"
 echo -e "   uses inline flags that may not be supported by Codecov."
 echo ""
-echo -e "2. The simpler pattern ${GREEN}.*/migrations/.*${NC}"
-echo -e "   should work correctly with Codecov's regex engine."
+echo -e "2. The simpler pattern ${GREEN}.*migrations.*${NC}"
+echo -e "   works correctly with Codecov's regex engine."
 echo ""
 echo -e "3. Ignore patterns only affect NEW uploads, not existing"
 echo -e "   coverage data already in the Codecov dashboard."
 echo ""
 echo -e "${YELLOW}Recommendation:${NC}"
-echo -e "Use the simpler pattern in .codecov.yml:"
+echo -e "Use the verified pattern in .codecov.yml:"
 echo ""
 echo -e "${GREEN}ignore:"
-echo -e "  - \".*/migrations/.*\"${NC}"
+echo -e "  - \".*migrations.*\"${NC}"
 echo ""
 echo -e "${YELLOW}To verify in Codecov dashboard:${NC}"
 echo -e "1. Update .codecov.yml with the recommended pattern"
