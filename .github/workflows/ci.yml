@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - testing-ignoring
   pull_request:
     branches:
       - main
