@@ -3,7 +3,7 @@ comment:
   hide_project_coverage: false
 
 ignore:
-  - ".*migrations.*"
+  - "**/migrations/**/*"
 
 flags:
   django:
