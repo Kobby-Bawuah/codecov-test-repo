@@ -33,7 +33,7 @@ jobs:
 
       - name: Run tests for ${{ matrix.app }}
         run: |
-          ./venv/bin/python -m pytest apps/${{ matrix.app }}/tests --cov=apps/${{ matrix.app }} --cov-report=xml --cov-branch --junitxml=reports/${{ matrix.app }}-junit.xml
+          PYTHONPATH=$(pwd) ./venv/bin/python -m pytest apps/${{ matrix.app }}/tests --cov=apps --cov-report=xml --cov-branch --junitxml=reports/${{ matrix.app }}-junit.xml
         continue-on-error: true
 
       - name: Upload coverage to Codecov
